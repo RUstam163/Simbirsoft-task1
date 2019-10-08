@@ -29,10 +29,8 @@ public class BookConrollerTest {
     public void testHomePage() throws Exception {
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("index"))    /*Ожидает home*/
-                .andExpect(content().string( /*Welcome to...*/
-
-                        containsString("Книги")));
+                .andExpect(view().name("index"))
+                .andExpect(content().string(containsString("Книги")));
     }
 }
 
