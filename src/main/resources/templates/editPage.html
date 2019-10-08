@@ -1,0 +1,34 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="EN">
+<head>
+    <title>Edit Books</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1> Add Books </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <a class="btn btn-info" href="#" th:href="@{/}"> Back to  the book list </a>
+            <form action="#" th:action="@{/update/{id}(id=${book.id})}" th:object="${book}" method="post">
+                <input type="hidden" th:value="id">
+                <label for="name">Title</label>
+                <input type="text" th:field="*{name}" id="name" placeholder="Title">
+                <br/>
+                <label for="author">Author</label>
+                <input type="text" th:field="*{author}" id="author" placeholder="Author">
+                <br/>
+                <label for="year">Year create </label>
+                <input type="text" th:field="*{year}" id="year" placeholder="Year">
+                <br/>
+                <input type="submit" value="Update book" class="btn btn-primary">
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="EN">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <meta charset="UTF-8">
+    <title>Книги</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1> Books </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th> Title</th>
+                    <th> Author</th>
+                    <th> Year create</th>
+                    <th> Edit</th>
+                    <th> Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="book : ${books}">
+
+                    <td><span th:text="${book.name}"> Title </span></td>
+                    <td><span th:text="${book.author}"> Author </span></td>
+                    <td><span th:text="${book.year}"> Year create </span></td>
+                    <td><a class="btn btn-primary" href="#" th:href="@{/edit/{id}(id=${book.id})}"> Edit Book </a></td>
+                    <td><a class="btn btn-danger" href="#" th:href="@{/delete/{id}(id=${book.id})}"> Delete Book </a></td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <a class="btn btn-success" href="#" th:href="@{/create}"> Add Books </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
