@@ -2,6 +2,9 @@ package com.example.task1.model;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "book")
@@ -10,12 +13,18 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @Size(min=3, max=30)
     @Column(name = "name")
     private String name;
 
+    @NotNull
+    @Size(min=5, max=30)
     @Column(name = "author")
     private String author;
 
+    @NotNull
+    @Digits( integer = 4, fraction = 0, message = "Enter only the year")
     @Column(name = "year_create")
     private int year;
 

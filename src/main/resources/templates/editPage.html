@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 </head>
 <body>
+<a href="/logout" class="btn btn-danger">Log Out</a>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -17,12 +18,15 @@
                 <input type="hidden" th:value="id">
                 <label for="name">Title</label>
                 <input type="text" th:field="*{name}" id="name" placeholder="Title">
+                <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p>
                 <br/>
                 <label for="author">Author</label>
                 <input type="text" th:field="*{author}" id="author" placeholder="Author">
+                <p th:if="${#fields.hasErrors('author')}" th:errors="*{author}">Author Error</p>
                 <br/>
                 <label for="year">Year create </label>
                 <input type="text" th:field="*{year}" id="year" placeholder="Year">
+                <p th:if="${#fields.hasErrors('year')}" th:errors="*{year}">Year Error</p>
                 <br/>
                 <input type="submit" value="Update book" class="btn btn-primary">
             </form>

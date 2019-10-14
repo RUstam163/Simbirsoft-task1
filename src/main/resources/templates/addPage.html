@@ -3,57 +3,61 @@
 <head>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-    <title>Hello</title>
+    <title>Create new Book</title>
 </head>
 <body>
-<a href="/" class="btn btn-info">Back to  the book list</a>
-<h2>Create new book</h2>
-<form class="addForm">
-    <label for="name">Title</label>
-    <input class="book-name" type="text" name="name" id="name" required/>
-    <br/>
-    <label for="author">Author</label>
-    <input class="book-author" type="text" name="author" id="author"/>
-    <br/>
-    <label for="year">Data create</label>
-    <input class="book-year" type="text" name="year" id="year"/>
-    <br/>
-    <input class="submit btn btn-primary" type="submit" value="добавить"/>
-</form>
+<a href="/logout" class="btn btn-danger">Log Out</a>
+<div class="row">
+    <div class="col-md-6">
+        <a href="/" class="btn btn-info">Back to the book list</a>
+        <h2>Create new book</h2>
+        <form class="addForm">
+            <label for="name">Title</label>
+            <input class="book-name" type="text" name="name" id="name" required/>
+            <br/>
+            <label for="author">Author</label>
+            <input class="book-author" type="text" name="author" id="author"/>
+            <br/>
+            <label for="year">Year create</label>
+            <input class="book-year" type="text" name="year" id="year"/>
+            <br/>
+            <input class="submit btn btn-primary" type="submit" value="Add book"/>
+        </form>
+    </div>
+</div>
+        <script src="./scripts/vendor/jquery.js"></script>
+        <script>
+            $(document).ready(() => {
+                $(".addForm").submit(function (e) {
+                    e.preventDefault(); //отключаем поведение формы по умолчанию (отправка на сервер)
 
-<script src="./scripts/vendor/jquery.js"></script>
-<script>
-    $(document).ready(() => {
-        $(".addForm").submit(function (e) {
-            e.preventDefault(); //отключаем поведение формы по умолчанию (отправка на сервер)
+                    const bookName = $(".book-name").val();
+                    const bookAuthor = $(".book-author").val();
+                    const bookYear = $(".book-year").val();
 
-            const bookName = $(".book-name").val();
-            const bookAuthor = $(".book-author").val();
-            const bookYear = $(".book-year").val();
+                    //собираем в объект данные по книге из полей формы
+                    const dataToSend = {
+                        name: bookName,
+                        author: bookAuthor,
+                        year: bookYear
+                    };
 
-            //собираем в объект данные по книге из полей формы
-            const dataToSend = {
-                name: bookName,
-                author: bookAuthor,
-                year: bookYear
-            };
-
-            //отправляем данные на сервер
-            $.ajax({
-                url: "/create",
-                type: "POST",
-                contentType: "application/json",
-                dataType: "text",
-                data: JSON.stringify(dataToSend),
-                success: function () {
-                    alert("Книга успешно добавлена");
-                },
-                error: function (err) {
-                    alert("Ошибка добавления книги" + JSON.stringify(err));
-                }
+                    //отправляем данные на сервер
+                    $.ajax({
+                        url: "/create",
+                        type: "POST",
+                        contentType: "application/json",
+                        dataType: "text",
+                        data: JSON.stringify(dataToSend),
+                        success: function () {
+                            alert("Книга успешно добавлена");
+                        },
+                        error: function (err) {
+                            alert("Ошибка добавления книги" + JSON.stringify(err));
+                        }
+                    });
+                });
             });
-        });
-    });
-</script>
+        </script>
 </body>
 </html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="EN">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <meta charset="UTF-8">
+
+    <title>Registration</title>
+</head>
+
+<body>
+<h2 th:text="${message}"></h2>
+<div class="form-group">
+    <form th:action="@{/registration}" method="post">
+        <div>
+            <h3>Create a new account</h3>
+        </div>
+        <div>
+            <label> User Name : <input type="text" class="form-control" name="login"/> </label>
+        </div>
+        <div>
+            <label> Password: <input type="password" class="form-control" name="password"/> </label>
+        </div>
+        <div>
+            <input type="submit" class="btn btn-primary" value="Registration"/>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

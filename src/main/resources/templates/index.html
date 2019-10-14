@@ -3,7 +3,8 @@
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <meta charset="UTF-8">
-    <title>Книги</title>
+    <title>Books</title>
+    <a href="/logout" class="btn btn-danger">Log Out</a>
 </head>
 <body>
 <div class="container">
@@ -20,8 +21,8 @@
                     <th> Title</th>
                     <th> Author</th>
                     <th> Year create</th>
-                    <th> Edit</th>
-                    <th> Delete</th>
+                    <th> Edit book</th>
+                    <th> Delete book</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -31,14 +32,15 @@
                     <td><span th:text="${book.author}"> Author </span></td>
                     <td><span th:text="${book.year}"> Year create </span></td>
                     <td><a class="btn btn-primary" href="#" th:href="@{/edit/{id}(id=${book.id})}"> Edit Book </a></td>
-                    <td><a class="btn btn-danger" href="#" th:href="@{/delete/{id}(id=${book.id})}"> Delete Book </a></td>
+                    <td><a class="btn btn-danger" href="#" th:href="@{/delete/{id}(id=${book.id})}"> Delete Book </a>
+                    </td>
 
                 </tr>
                 </tbody>
             </table>
         </div>
         <div class="col-md-6">
-            <a class="btn btn-success" href="#" th:href="@{/create}"> Add Books </a>
+            <a class="btn btn-success" href="#" th:href="@{/create}"> Add Book </a>
         </div>
     </div>
 </div>
