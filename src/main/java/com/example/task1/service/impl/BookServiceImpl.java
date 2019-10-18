@@ -14,19 +14,19 @@ public class BookServiceImpl implements BookService {
     private BookRepository bookRepository;
 
     @Autowired
-    public void setBookRepository(BookRepository bookRepository) {
+    public BookServiceImpl(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
+
     @Override
     public Book addBook(Book book) {
-        Book savedBook = bookRepository.saveAndFlush(book);
-        return savedBook;
+        return bookRepository.saveAndFlush(book);
     }
 
     @Override
     public void delete(long id) {
-        bookRepository.delete(id);
+        bookRepository.deleteById(id);
     }
 
     @Override

@@ -5,6 +5,7 @@ import com.example.task1.model.Book;
 import java.util.List;
 
 public interface BookService {
+
     Book addBook(Book book);
 
     void delete(long id);

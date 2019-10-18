@@ -14,60 +14,47 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional(readOnly = true)
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private UserServiceImpl userService;
-
     @Autowired
-    public void setUserService(UserServiceImpl userService) {
-        this.userService = userService;
-    }
+    private  UserServiceImpl userService;
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         com.example.task1.model.User domainUser = userService.getUserByLogin(login);
-        boolean enabled = true;
-        boolean accountNonExpired = true;
-        boolean credentialsNonExpired = true;
-        boolean accountNonLocked = true;
+        if (domainUser == null) {
+            throw new UsernameNotFoundException("username " + login + " not found");
+        }
         return new User(
                 domainUser.getLogin(),
                 domainUser.getPassword(),
-                enabled,
-                accountNonExpired,
-                credentialsNonExpired,
-                accountNonLocked,
+                true,
+                true,
+                true,
+                true,
                 getAuthorities(domainUser.getRole().getId())
         );
     }
 
     public Collection<? extends GrantedAuthority> getAuthorities(Long role) {
-        return getGrantedAuthorities(getRoles(role));
+        return getRoles(role).stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
     }
 
     public List<String> getRoles(Long role) {
 
         List<String> roles = new ArrayList<String>();
 
-        if (role == 1) {
+        if (role == 1L) {
             roles.add("ROLE_MODERATOR");
             roles.add("ROLE_ADMIN");
-        } else if (role == 2) {
+        } else if (role == 2L) {
             roles.add("ROLE_MODERATOR");
         }
         return roles;
-    }
-
-    public static List<GrantedAuthority> getGrantedAuthorities(List<String> roles) {
-        List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-
-        for (String role : roles) {
-            authorities.add(new SimpleGrantedAuthority(role));
-        }
-        return authorities;
     }
 
 }

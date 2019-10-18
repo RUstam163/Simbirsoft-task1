@@ -1,11 +1,11 @@
 package com.example.task1.model;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "role")
 public class Role {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -14,6 +14,11 @@ public class Role {
     private String role;
 
     public Role() {
+    }
+
+    public Role(Long id, String role) {
+        this.id = id;
+        this.role = role;
     }
 
     public Long getId() {

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="./js/add-page.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <title>Create new Book</title>
+</head>
+<body>
+<a href="/logout" class="btn btn-danger">Log Out</a>
+<div class="row">
+    <div class="col-md-6">
+        <a href="/" class="btn btn-info">Back to the book list</a>
+        <h2>Create new book</h2>
+        <form class="addForm">
+            <label for="name">Title</label>
+            <input class="book-name" type="text" name="name" id="name" required/>
+            <br/>
+            <label for="author">Author</label>
+            <input class="book-author" type="text" name="author" id="author"/>
+            <br/>
+            <label for="year">Year create</label>
+            <input class="book-year" type="text" name="year" id="year"/>
+            <br/>
+            <input class="submit btn btn-primary" type="submit" value="Add book"/>
+        </form>
+    </div>
+</div>
+</body>
+</html>

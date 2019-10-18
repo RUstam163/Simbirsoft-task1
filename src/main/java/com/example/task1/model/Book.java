@@ -1,6 +1,5 @@
 package com.example.task1.model;
 
-
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
@@ -9,21 +8,22 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "book")
 public class Book {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @NotNull(message = "input Name")
     @Size(min=3, max=30)
     @Column(name = "name")
     private String name;
 
-    @NotNull
+    @NotNull(message = "input Author")
     @Size(min=5, max=30)
     @Column(name = "author")
     private String author;
 
-    @NotNull
+    @NotNull(message = "input Year create")
     @Digits( integer = 4, fraction = 0, message = "Enter only the year")
     @Column(name = "year_create")
     private int year;
@@ -32,6 +32,13 @@ public class Book {
     }
 
     public Book(String name, String author, int year) {
+        this.name = name;
+        this.author = author;
+        this.year = year;
+    }
+
+    public Book(Long id, String name, String author, int year) {
+        this.id = id;
         this.name = name;
         this.author = author;
         this.year = year;
