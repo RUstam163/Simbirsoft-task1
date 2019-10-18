@@ -14,17 +14,17 @@ public class Book {
     private Long id;
 
     @NotNull(message = "input Name")
-    @Size(min=3, max=30)
+    @Size(min = 3, max = 30)
     @Column(name = "name")
     private String name;
 
     @NotNull(message = "input Author")
-    @Size(min=5, max=30)
+    @Size(min = 5, max = 30)
     @Column(name = "author")
     private String author;
 
     @NotNull(message = "input Year create")
-    @Digits( integer = 4, fraction = 0, message = "Enter only the year")
+    @Digits(integer = 4, fraction = 0, message = "Enter only the year")
     @Column(name = "year_create")
     private int year;
 

@@ -40,9 +40,14 @@
                         <span th:text="${book.year}"> Year create </span>
                     </td>
                     <td>
-                        <a class="btn btn-primary" href="" th:href="@{/books/{id}(id=${book.id})}"> Edit Book </a></td>
+                        <a class="btn btn-primary" href="" th:href="@{/books/{id}(id=${book.id})}">
+                            Edit Book
+                        </a>
+                    </td>
                     <td>
-                        <a class="btn btn-danger" href="" th:onclick="'deleteBook(\'' + ${book.id} + '\');'">Delete Book</a>
+                        <a class="btn btn-danger" href="" th:onclick="'deleteBook(\'' + ${book.id} + '\');'">
+                            Delete Book
+                        </a>
                     </td>
 
                 </tr>

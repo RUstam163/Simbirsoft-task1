@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="EN">
 <head>
+    <meta charset="UTF-8"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<!--    <script src="./js/edit-page-script.js" th:href="@{.js/edit-page-script.js}"></script>-->
     <script type="text/javascript" th:src="@{/js/edit-page-script.js}"></script>
-
-    <title>Edit Books</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <title>Edit Books</title>
 </head>
 <body>
 <a href="/logout" class="btn btn-danger">Log Out</a>
@@ -18,7 +17,7 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <a class="btn btn-info" href="#" th:href="@{/}"> Back to  the book list </a>
+            <a class="btn btn-info" href="#" th:href="@{/}"> Back to the book list </a>
             <form class="editForm" th:object="${book}">
                 <input class="book-id" type="hidden" th:value="*{id}">
                 <label for="name">Title</label>
@@ -28,7 +27,7 @@
                 <input class="book-author" type="text" th:value="*{author}" id="author" placeholder="Author">
                 <br/>
                 <label for="year">Year create </label>
-                <input  class="book-year" type="text" th:value="*{year}" id="year" placeholder="Year">
+                <input class="book-year" type="text" th:value="*{year}" id="year" placeholder="Year">
                 <br/>
                 <input type="submit" value="Update book" class="btn btn-primary">
             </form>

@@ -18,7 +18,6 @@ public class BookServiceImpl implements BookService {
         this.bookRepository = bookRepository;
     }
 
-
     @Override
     public Book addBook(Book book) {
         return bookRepository.saveAndFlush(book);

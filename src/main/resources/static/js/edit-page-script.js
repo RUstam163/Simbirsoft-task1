@@ -2,23 +2,20 @@ $(document).ready(() => {
     $(".editForm").submit(function (e) {
         e.preventDefault(); //отключаем поведение формы по умолчанию (отправка на сервер)
 
-        var bookId = $(".book-id").val();
-        var bookName = $(".book-name").val();
-        var bookAuthor = $(".book-author").val();
-        var bookYear = $(".book-year").val();
-        var json = { "id" : bookId, "name" : bookName, "author": bookAuthor, "year": bookYear };
-
-        //собираем в объект данные по книге из полей формы
-        // const dataToSend = {
-        //     id: bookId,
-        //     name: bookName,
-        //     author: bookAuthor,
-        //     year: bookYear
-        // };
+        const bookId = $(".book-id").val();
+        const bookName = $(".book-name").val();
+        const bookAuthor = $(".book-author").val();
+        const bookYear = $(".book-year").val();
+        const json = {
+            id: bookId,
+            name: bookName,
+            author: bookAuthor,
+            year: bookYear
+        };
 
         //отправляем данные на сервер
         $.ajax({
-            url: "/books/" + bookId ,
+            url: "/books/" + bookId,
             type: "PUT",
             contentType: "application/json",
             dataType: "text",

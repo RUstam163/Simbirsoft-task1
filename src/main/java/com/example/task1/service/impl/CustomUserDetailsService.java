@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private  UserServiceImpl userService;
+    private UserServiceImpl userService;
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
@@ -41,21 +41,6 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     public Collection<? extends GrantedAuthority> getAuthorities(Long role) {
-        return getRoles(role).stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+        return RoleMapServise.getListRole(role).stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
     }
-
-    public List<String> getRoles(Long role) {
-
-//        List<String> roles = new ArrayList<String>();
-//
-//        if (role == 1L) {
-//            roles.add("ROLE_MODERATOR");
-//            roles.add("ROLE_ADMIN");
-//        } else if (role == 2L) {
-//            roles.add("ROLE_MODERATOR");
-//        }
-//        return roles;
-        return RoleMapServise.getListRole(role);
-    }
-
 }

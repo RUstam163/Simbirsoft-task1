@@ -1,7 +1,7 @@
 package com.example.task1.controller.rest;
 
 import com.example.task1.model.User;
-import com.example.task1.model.constants.RoleConstatns;
+import com.example.task1.model.constants.RoleConstants;
 import com.example.task1.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -33,7 +33,7 @@ public class RegistrationController {
             return new RedirectView("/registration");
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRole(RoleConstatns.ROLE_ADMIN);
+        user.setRole(RoleConstants.ROLE_ADMIN);
         userService.save(user);
         return new RedirectView("/login");
     }

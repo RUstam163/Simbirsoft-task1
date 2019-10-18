@@ -5,9 +5,7 @@ $(document).ready(() => {
         const bookName = $(".book-name").val();
         const bookAuthor = $(".book-author").val();
         const bookYear = $(".book-year").val();
-
-        //собираем в объект данные по книге из полей формы
-        const dataToSend = {
+        const json = {
             name: bookName,
             author: bookAuthor,
             year: bookYear
@@ -19,7 +17,7 @@ $(document).ready(() => {
             type: "POST",
             contentType: "application/json",
             dataType: "text",
-            data: JSON.stringify(dataToSend),
+            data: JSON.stringify(json),
             success: function () {
                 alert("Книга успешно добавлена");
             },
