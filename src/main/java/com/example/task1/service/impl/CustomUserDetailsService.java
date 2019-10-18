@@ -46,15 +46,16 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     public List<String> getRoles(Long role) {
 
-        List<String> roles = new ArrayList<String>();
-
-        if (role == 1L) {
-            roles.add("ROLE_MODERATOR");
-            roles.add("ROLE_ADMIN");
-        } else if (role == 2L) {
-            roles.add("ROLE_MODERATOR");
-        }
-        return roles;
+//        List<String> roles = new ArrayList<String>();
+//
+//        if (role == 1L) {
+//            roles.add("ROLE_MODERATOR");
+//            roles.add("ROLE_ADMIN");
+//        } else if (role == 2L) {
+//            roles.add("ROLE_MODERATOR");
+//        }
+//        return roles;
+        return RoleMapServise.getListRole(role);
     }
 
 }
