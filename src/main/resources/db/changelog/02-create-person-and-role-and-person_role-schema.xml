@@ -5,7 +5,7 @@
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
     <!--Tables-->
-    <changeSet id="1" author="RMinibaev">
+    <changeSet id="3" author="RMinibaev">
         <createTable tableName="person">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints nullable="false"/>
@@ -14,6 +14,9 @@
                 <constraints nullable="false" unique="true"/>
             </column>
             <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="age" type="Int">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -38,14 +41,14 @@
     </changeSet>
 
     <!--Primary Keys    -->
-    <changeSet id="2" author="RMinibaev">
+    <changeSet id="4" author="RMinibaev">
         <addPrimaryKey tableName="person" columnNames="id"/>
         <addPrimaryKey tableName="role" columnNames="id"/>
         <addPrimaryKey tableName="person_role" columnNames="person_id, role_id"/>
     </changeSet>
 
     <!--Foreign Keys-->
-    <changeSet id="3" author="RMinibaev">
+    <changeSet id="5" author="RMinibaev">
         <addForeignKeyConstraint baseTableName="person_role"
                                  baseColumnNames="role_id"
                                  constraintName="fk_user_role_roleid"

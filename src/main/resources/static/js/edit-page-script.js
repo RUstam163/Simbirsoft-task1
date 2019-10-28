@@ -6,11 +6,13 @@ $(document).ready(() => {
         const bookName = $(".book-name").val();
         const bookAuthor = $(".book-author").val();
         const bookYear = $(".book-year").val();
+        const bookCensored = Boolean( $(".book-censored").val());
         const json = {
             id: bookId,
             name: bookName,
             author: bookAuthor,
-            year: bookYear
+            year: bookYear,
+            censored : bookCensored
         };
 
         //отправляем данные на сервер

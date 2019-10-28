@@ -1,8 +1,7 @@
 package com.example.task1.service.impl;
 
-import com.example.task1.repository.UserRepository;
+import com.example.task1.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,7 +10,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collection;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,11 +32,10 @@ public class CustomUserDetailsService implements UserDetailsService {
                 true,
                 true,
                 true,
-                getAuthorities(domainUser.getRole().getId())
+                domainUser.getRole().stream()
+                        .map(Role::getRole)
+                        .map(SimpleGrantedAuthority::new)
+                        .collect(Collectors.toList())
         );
-    }
-
-    public Collection<? extends GrantedAuthority> getAuthorities(Long role) {
-        return RoleMapServise.getListRole(role).stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
     }
 }

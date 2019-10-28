@@ -15,6 +15,7 @@
             <column name="year_create" type="INT">
                 <constraints nullable="false"/>
             </column>
+            <column name="is_censored" type="BOOLEAN"/>
         </createTable>
     </changeSet>
 

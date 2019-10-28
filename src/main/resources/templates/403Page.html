@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="EN">
+<head>
+    <title th:text="#{403.page.title}"></title>
+</head>
+<body>
+<h3 th:if="${message != null}" th:utext="${message}" style="color: red;"></h3>
+</body>
+</html>

@@ -1,18 +1,20 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="EN">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      lang="EN">
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="./js/index.js"></script>
     <meta charset="UTF-8">
-    <title>Books</title>
-    <a href="/logout" class="btn btn-danger">Log Out</a>
+    <title th:text="#{book.table.h1}"></title>
+    <a href="/logout" class="btn btn-danger" th:text="#{logout.button}"></a>
 </head>
 <body>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1> Books </h1>
+            <h1 th:text="#{book.table.h1}"></h1>
         </div>
     </div>
     <div class="row">
@@ -20,42 +22,45 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th> Title</th>
-                    <th> Author</th>
-                    <th> Year create</th>
-                    <th> Edit book</th>
-                    <th> Delete book</th>
+                    <th th:text="#{book.table.title}"></th>
+                    <th th:text="#{book.table.author}"></th>
+                    <th th:text="#{book.table.year}"></th>
+                    <th th:text="#{book.table.is.censored}"></th>
+                    <th sec:authorize="hasAuthority('ROLE_MODERATOR')" th:text="#{book.table.edit}"></th>
+                    <th sec:authorize="hasAuthority('ROLE_MODERATOR')" th:text="#{book.table.delete}"></th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="book : ${books}">
 
                     <td>
-                        <span th:text="${book.name}"> Title </span>
+                        <span th:text="${book.name}"></span>
                     </td>
                     <td>
-                        <span th:text="${book.author}"> Author </span>
+                        <span th:text="${book.author}"></span>
                     </td>
                     <td>
-                        <span th:text="${book.year}"> Year create </span>
+                        <span th:text="${book.year}"></span>
                     </td>
                     <td>
-                        <a class="btn btn-primary" href="" th:href="@{/books/{id}(id=${book.id})}">
-                            Edit Book
+                        <span th:text="${book.censored()}"></span>
+                    </td>
+                    <td>
+                        <a sec:authorize="hasAuthority('ROLE_MODERATOR')" class="btn btn-primary" href=""
+                           th:href="@{/books/{id}(id=${book.id})}" th:text="#{book.table.edit}">
                         </a>
                     </td>
                     <td>
-                        <a class="btn btn-danger" href="" th:onclick="'deleteBook(\'' + ${book.id} + '\');'">
-                            Delete Book
+                        <a sec:authorize="hasAuthority('ROLE_MODERATOR')" class="btn btn-danger" href=""
+                           th:onclick="'deleteBook(\'' + ${book.id} + '\');'" th:text="#{book.table.delete}">
                         </a>
                     </td>
-
                 </tr>
                 </tbody>
             </table>
         </div>
-        <div class="col-md-6">
-            <a class="btn btn-success" href="#" th:href="@{/books}"> Add Book </a>
+        <div class="col-md-6" sec:authorize="hasAuthority('ROLE_MODERATOR')">
+            <a class="btn btn-success" href="#" th:href="@{/books}" th:text="#{book.table.add}"></a>
         </div>
     </div>
 </div>

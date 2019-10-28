@@ -14,7 +14,7 @@ public interface BookService {
 
     Book editBook(Book book);
 
-    List<Book> getAll();
+    List<Book> getAll(Integer age);
 
     Book getById(Long id);
 }

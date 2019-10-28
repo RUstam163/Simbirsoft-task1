@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.Valid;
 import java.io.IOException;
@@ -22,9 +24,13 @@ public class BookRestController {
     }
 
     @PostMapping(value = "/books")
-    public ResponseEntity<Book> addBook(@RequestBody Book book) {
-        Book book1 = bookService.addBook(book);
-        return new ResponseEntity<>(book1, HttpStatus.OK);
+    public RedirectView addBook(@Valid Book book, BindingResult bindingResult,RedirectAttributes redirAttrs) {
+        if (bindingResult.hasErrors()) {
+            redirAttrs.addFlashAttribute(book);
+            return new RedirectView("/books");
+        }
+        bookService.addBook(book);
+        return new RedirectView("/");
     }
 
     @DeleteMapping("/books/{id}")

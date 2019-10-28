@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.Collections;
 import java.util.Locale;
 
 
@@ -37,7 +38,7 @@ public class RegistrationController {
             return new RedirectView("/registration");
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRole(RoleConstants.ROLE_ADMIN);
+        user.setRole(Collections.singleton(RoleConstants.ROLE_USER));
         userService.save(user);
         return new RedirectView("/login");
     }

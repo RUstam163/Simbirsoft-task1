@@ -2,33 +2,41 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="EN">
 <head>
     <meta charset="UTF-8"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="./js/add-page.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-    <title>Create new Book</title>
+    <title th:text="#{add.page.title}"></title>
 </head>
 <body>
-<a href="/logout" class="btn btn-danger">Log Out</a>
+<a href="/logout" class="btn btn-danger" th:text="#{logout.button}"></a>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1>Create new book</h1>
+            <h1 th:text="#{add.page.title}"></h1>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6">
-            <a class="btn btn-info" href="#" th:href="@{/}"> Back to the book list </a>
-            <form class="addForm">
-                <label for="name">Title</label>
-                <input class="book-name" type="text" name="name" id="name" placeholder="Title" required>
-                <br/>
-                <label for="author">Author</label>
-                <input class="book-author" type="text" name="author" id="author" placeholder="Author">
-                <br/>
-                <label for="year">Year create</label>
-                <input class="book-year" type="text" name="year" id="year" placeholder="Year">
-                <br/>
-                <input type="submit" value="Add book" class="btn btn-primary">
+            <a class="btn btn-info" href="#" th:href="@{/}" th:text="#{href.back.to.list}"></a>
+            <form class="addForm" method="POST" action="/books" th:object="${book}">
+                <table>
+                    <tr>
+                        <td th:text="#{book.table.title}"></td>
+                        <td><input class="book-name" type="text" th:field="*{name}" id="name" placeholder="Title"></td>
+                        <td th:if="${#fields.hasErrors('name')}" th:errors="#{book.not.null.name}">Name Error</td>
+                    </tr>
+                    <tr>
+                        <td th:text="#{book.table.author}"></td>
+                        <td><input class="book-author" type="text" th:field="*{author}" id="author" placeholder="Author"></td>
+                        <td th:if="${#fields.hasErrors('author')}" th:errors="#{book.not.null.author}">author Error</td>
+                    </tr>
+                    <tr>
+                        <td th:text="#{book.table.year}"></td>
+                        <td><input class="book-year" type="text" th:field="*{year}" id="year" placeholder="Year"></td>
+                        <td th:if="${#fields.hasErrors('year')}" th:errors="#{book.not.null.year}">author Error</td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" value="Add book" class="btn btn-primary"></td>
+                    </tr>
+                </table>
             </form>
         </div>
     </div>

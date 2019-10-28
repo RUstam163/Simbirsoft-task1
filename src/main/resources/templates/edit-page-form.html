@@ -5,35 +5,38 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript" th:src="@{/js/edit-page-script.js}"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-    <title>Edit Books</title>
+    <title th:text="#{edit.page.title}"></title>
 </head>
 <body>
-<a href="/logout" class="btn btn-danger">Log Out</a>
+<a href="/logout" class="btn btn-danger" th:text="#{logout.button}"></a>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1> Edit Book </h1>
+            <h1 th:text="#{edit.page.title}"></h1>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6">
-            <a class="btn btn-info" href="#" th:href="@{/}"> Back to the book list </a>
+            <a class="btn btn-info" href="#" th:href="@{/}" th:text="#{href.back.to.list}"></a>
             <form class="editForm" th:object="${book}">
                 <input class="book-id" type="hidden" th:value="*{id}">
-                <label for="name">Title</label>
+                <label for="name" th:text="#{book.table.title}"></label>
                 <input class="book-name" type="text" th:value="*{name}" id="name" placeholder="Title">
                 <br/>
-                <label for="author">Author</label>
+                <label for="author" th:text="#{book.table.author}"></label>
                 <input class="book-author" type="text" th:value="*{author}" id="author" placeholder="Author">
                 <br/>
-                <label for="year">Year create </label>
+                <label for="year" th:text="#{book.table.year}"></label>
                 <input class="book-year" type="text" th:value="*{year}" id="year" placeholder="Year">
                 <br/>
+                <label for="censored" th:text="#{book.table.censored}"></label>
+                <input class="book-censored" type="checkbox" th:checked="${book.censored()}" id="censored">
+                <br/>
+
                 <input type="submit" value="Update book" class="btn btn-primary">
             </form>
         </div>
     </div>
 </div>
 </body>
-
 </html>

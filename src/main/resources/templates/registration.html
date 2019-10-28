@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <meta charset="UTF-8">
 
-    <title>Registration</title>
+    <title th:text="#{registration.page.title}"></title>
 </head>
 
 <body>
@@ -13,13 +13,19 @@
 <div class="form-group">
     <form th:action="@{/registration}" method="post">
         <div>
-            <h3>Create a new account</h3>
+            <h3 th:text="#{create.new.account}"></h3>
         </div>
         <div>
-            <label> User Name : <input type="text" class="form-control" name="login"/> </label>
+            <label th:text="#{user.name.input}" for="login"></label>
+            <input type="text" class="form-control" name="login" id="login"/>
         </div>
         <div>
-            <label> Password: <input type="password" class="form-control" name="password"/> </label>
+            <label th:text="#{user.password.input}" for="password"></label>
+            <input type="password" class="form-control" name="password" id="password"/>
+        </div>
+        <div>
+            <label th:text="#{user.age.input}" for="age"></label>
+            <input type="text" class="form-control" name="age" id="age"/>
         </div>
         <div>
             <input type="submit" class="btn btn-primary" value="Registration"/>

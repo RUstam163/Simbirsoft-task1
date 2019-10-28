@@ -1,6 +1,7 @@
 package com.example.task1.model;
 
 import javax.persistence.*;
+
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -13,20 +14,24 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "input Name")
+    @NotNull(message = "book.not.null.name")
     @Size(min = 3, max = 30)
     @Column(name = "name")
     private String name;
 
-    @NotNull(message = "input Author")
+    @NotNull(message = "book.not.null.author")
     @Size(min = 5, max = 30)
     @Column(name = "author")
     private String author;
 
-    @NotNull(message = "input Year create")
+    @NotNull(message = "book.not.null.year")
     @Digits(integer = 4, fraction = 0, message = "Enter only the year")
     @Column(name = "year_create")
     private int year;
+
+    @NotNull
+    @Column(name = "is_censored")
+    private boolean censored;
 
     public Book() {
     }
@@ -37,11 +42,19 @@ public class Book {
         this.year = year;
     }
 
-    public Book(Long id, String name, String author, int year) {
+    public Book(String name, String author, int year, boolean censored) {
+        this.name = name;
+        this.author = author;
+        this.year = year;
+        this.censored = censored;
+    }
+
+    public Book(Long id, String name, String author, int year, boolean censored) {
         this.id = id;
         this.name = name;
         this.author = author;
         this.year = year;
+        this.censored = censored;
     }
 
     public Long getId() {
@@ -76,6 +89,14 @@ public class Book {
         this.year = year;
     }
 
+    public boolean censored() {
+        return censored;
+    }
+
+    public void setCensored(boolean censored) {
+        this.censored = censored;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
@@ -83,6 +104,7 @@ public class Book {
                 ", name='" + name + '\'' +
                 ", author='" + author + '\'' +
                 ", year=" + year +
+                ", isCensored=" + censored +
                 '}';
     }
 }

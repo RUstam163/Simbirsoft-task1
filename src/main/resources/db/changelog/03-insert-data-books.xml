@@ -4,7 +4,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
     <!--Data-->
-    <changeSet id="1" author="RMinibaev">
+    <changeSet id="6" author="RMinibaev">
         <insert tableName="book">
             <column name="name" value="Мастер и Маргарита"/>
             <column name="author" value="Михаил Булгаков"/>

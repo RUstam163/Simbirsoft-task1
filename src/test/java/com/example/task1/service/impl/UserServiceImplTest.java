@@ -13,6 +13,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.Collections;
+
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -27,9 +29,9 @@ public class UserServiceImplTest {
     @Before
     public void setUp() {
         Mockito.when(userRepository.getUserByLogin("testUser"))
-                .thenReturn(new User("testUser", "testPassword", new Role(1L,"ROLE_TEST")));
+                .thenReturn(new User("testUser", "testPassword", Collections.singleton(new Role(1L, "ROLE_TEST"))));
         Mockito.when(userRepository.save(Mockito.any(User.class)))
-                .thenReturn(new User("testUser", "testPassword", new Role(1L,"ROLE_TEST")));
+                .thenReturn(new User("testUser", "testPassword", Collections.singleton(new Role(1L, "ROLE_TEST"))));
     }
 
     @Test

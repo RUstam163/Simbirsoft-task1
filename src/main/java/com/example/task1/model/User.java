@@ -1,6 +1,7 @@
 package com.example.task1.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "person")
@@ -16,20 +17,30 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @OneToOne(cascade = CascadeType.MERGE)
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "person_role",
             joinColumns = {@JoinColumn(name = "person_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")}
     )
-    private Role role;
+    private Set<Role> role;
+
+    @Column(name = "age")
+    private int age;
 
     public User() {
     }
 
-    public User(String login, String password, Role role) {
+    public User(String login, String password, Set<Role> role) {
         this.login = login;
         this.password = password;
         this.role = role;
+    }
+
+    public User(String login, String password, Set<Role> role, int age) {
+        this.login = login;
+        this.password = password;
+        this.role = role;
+        this.age = age;
     }
 
     public Long getId() {
@@ -56,12 +67,20 @@ public class User {
         this.password = password;
     }
 
-    public Role getRole() {
+    public Set<Role> getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(Set<Role> role) {
         this.role = role;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     @Override
@@ -70,6 +89,7 @@ public class User {
                 "login='" + login + '\'' +
                 ", password='" + "****" + '\'' +
                 ", role=" + role +
+                ",age=" + age +
                 '}';
     }
 }

@@ -15,6 +15,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import java.util.Collections;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -30,7 +31,7 @@ public class CustomUserDetailsServiceTest {
     @Before
     public void setUp() {
         Mockito.when(userService.getUserByLogin("test"))
-                .thenReturn(new User("test", "testPass", new Role(1L, "ROLE_USER")));
+                .thenReturn(new User("test", "testPass", Collections.singleton(new Role(1L, "ROLE_USER"))));
         Mockito.when(userService.getUserByLogin("test2"))
                 .thenReturn(null)
                 .thenThrow(new UsernameNotFoundException("username " + "test2" + " not found"));
@@ -52,11 +53,6 @@ public class CustomUserDetailsServiceTest {
         UserDetails userDetails1 = customUserDetailsService.loadUserByUsername("test");
         Assert.assertEquals(userDetails.getUsername(), userDetails1.getUsername());
         Assert.assertEquals(userDetails.getAuthorities(), userDetails1.getAuthorities());
-
-    }
-
-    @Test
-    public void getAuthoritiesTest() {
 
     }
 }
